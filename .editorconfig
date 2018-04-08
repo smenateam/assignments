@@ -1,0 +1,7 @@
+# Настройки для pycharm и других редакторов (atom, vscode, etc)
+
+[*.md]
+indent_style = space
+indent_size = 2
+# Чтобы двойный пробелы в конце строк в markdown-файлах не обрезались
+trim_trailing_whitespace = false

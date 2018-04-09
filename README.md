@@ -168,10 +168,10 @@ API, если принтера с таким ключом не существу�
     **Content:** 
     ```
     {
-        cheks: [
+        checks: [
             {
                 id: 1
-                url: 'http://check.service.ru/check/?order_id=123456&type=client&format=pdf'
+                url: 'http://SERVICE_URL/check/?order_id=123456&type=client&format=pdf'
             }
         ]
     }

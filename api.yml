@@ -1,4 +1,3 @@
----
 openapi: 3.0.2
 
 info:
@@ -32,7 +31,7 @@ paths:
               $ref: '#/components/schemas/Order'
 
       responses:
-        200:
+        '200':
           description: Чеки успешно созданы
           content:
             application/json:
@@ -40,7 +39,7 @@ paths:
                 $ref: '#/components/schemas/OkResponse'
               example:
                 ok: Чеки успешно созданы
-        400:
+        '400':
           description: |
             При создании чеков произошла одна из ошибок:
             1. Для данного заказа уже созданы чеки
@@ -60,7 +59,7 @@ paths:
         - $ref: '#/components/parameters/APIKey'
 
       responses:
-        200:
+        '200':
           description: Список чеков
           content:
             application/json:
@@ -70,7 +69,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Check'
-        401:
+        '401':
           description: Не существует принтера с таким api_key
           content:
             application/json:
@@ -96,14 +95,14 @@ paths:
             type: integer
 
       responses:
-        200:
+        '200':
           description: PDF-файл чека
           content:
             application/pdf:
               schema:
                 type: string
                 format: binary
-        401:
+        '401':
           description: Не существует принтера с таким api_key
           content:
             application/json:
@@ -111,7 +110,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               example:
                 error: Ошибка авторизации
-        400:
+        '400':
           description: |
             При создании чеков произошла одна из ошибок:
             1. Данного чека не существует

@@ -54,14 +54,14 @@ app.post("/login", (req, res) => {
 
     res.json({
       success: true,
-      err: null,
+      error: null,
       token
     });
   } else {
     res.status(401).json({
       success: false,
       token: null,
-      err: "Введите правильные имя пользователя/пароль"
+      error: "Введите правильные имя пользователя/пароль"
     });
   }
 });
@@ -70,14 +70,15 @@ app.get("/about", jwtMW, (req, res) => {
   const { id } = req.user;
   const user = users.find(user => user.id == id);
   if (user) {
+    const { password, ...info } = user;
     res.json({
       success: true,
-      data: user
+      data: info
     });
   } else {
     res.status(404).json({
       success: false,
-      err: "Не удалось получить информацию о пользователе"
+      error: "Не удалось получить информацию о пользователе"
     });
   }
 });
@@ -88,7 +89,7 @@ app.post("/register", (req, res) => {
   if (isRegistered) {
     res.status(404).json({
       success: false,
-      err: "Пользователь с таким именем уже зарегестрирован"
+      error: "Пользователь с таким именем уже зарегистрирован"
     });
     return;
   }
@@ -106,13 +107,13 @@ app.post("/register", (req, res) => {
   });
 });
 
-// error handling
-app.use(function(err, req, res, next) {
-  if (err.name === "UnauthorizedError") {
+// erroror handling
+app.use(function(error, req, res, next) {
+  if (error.name === "Unauthorizederroror") {
     // если пользователь не авторизован - отправляем ошибку о том что он не авторизован
-    res.status(401).send(err);
+    res.status(401).send(error);
   } else {
-    next(err);
+    next(error);
   }
 });
 

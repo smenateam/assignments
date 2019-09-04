@@ -108,10 +108,13 @@ app.post("/register", (req, res) => {
 });
 
 // erroror handling
-app.use(function(error, req, res, next) {
-  if (error.name === "Unauthorizederroror") {
+app.use((error, req, res, next) => {
+  if (error.name === "UnauthorizedError") {
     // если пользователь не авторизован - отправляем ошибку о том что он не авторизован
-    res.status(401).send(error);
+    res.status(401).json({
+      success: false,
+      message: "Пользователь не авторизован"
+    });
   } else {
     next(error);
   }

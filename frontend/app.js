@@ -76,7 +76,7 @@ app.get("/about", jwtMW, (req, res) => {
       data: info
     });
   } else {
-    res.status(404).json({
+    res.status(400).json({
       success: false,
       error: "Не удалось получить информацию о пользователе"
     });
@@ -87,7 +87,7 @@ app.post("/register", (req, res) => {
   const { username, password } = req.body;
   const isRegistered = users.some(user => user.username == username);
   if (isRegistered) {
-    res.status(404).json({
+    res.status(400).json({
       success: false,
       error: "Пользователь с таким именем уже зарегистрирован"
     });

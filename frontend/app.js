@@ -1,16 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const fs = require("fs");
 const exjwt = require("express-jwt");
 const morgan = require("morgan");
-const path = require("path");
 
 const app = express();
 
 app.use(morgan("dev"));
 
-// Setting up bodyParser to use json and set it to req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -34,8 +31,9 @@ let users = [
     id: 2,
     username: "test2",
     avatar: `https://picsum.photos/2/200/200`,
-    password:
-      "Я тестовый пользователь номер два. Я тоже никогда не пропадаю между запусками api!"
+    password: "234",
+    about:
+      "Я тестовый пользователь номер два. Я так же никогда не пропадаю между запусками api!"
   }
 ];
 

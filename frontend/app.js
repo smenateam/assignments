@@ -103,7 +103,7 @@ app.post("/register", (req, res) => {
   });
   res.json({
     success: true,
-    message: "Пользователь успешно зарегестрирован"
+    message: "Пользователь успешно зарегистрирован"
   });
 });
 

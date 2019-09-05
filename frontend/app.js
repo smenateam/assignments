@@ -110,7 +110,7 @@ app.post("/register", (req, res) => {
     about: null
   });
   res.json({
-    message: "Пользователь успешно зарегестрирован"
+    message: "Пользователь успешно зарегистрирован"
   });
 });
 

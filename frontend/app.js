@@ -53,13 +53,11 @@ app.post("/login", (req, res) => {
     );
 
     res.json({
-      success: true,
       error: null,
       token
     });
   } else {
     res.status(401).json({
-      success: false,
       token: null,
       error: "Введите правильные имя пользователя/пароль"
     });
@@ -72,12 +70,10 @@ app.get("/about", jwtMW, (req, res) => {
   if (user) {
     const { password, ...info } = user;
     res.json({
-      success: true,
       data: info
     });
   } else {
     res.status(400).json({
-      success: false,
       error: "Не удалось получить информацию о пользователе"
     });
   }
@@ -88,11 +84,23 @@ app.post("/register", (req, res) => {
   const isRegistered = users.some(user => user.username == username);
   if (isRegistered) {
     res.status(400).json({
-      success: false,
       error: "Пользователь с таким именем уже зарегистрирован"
     });
     return;
   }
+  if (username.length < 3) {
+    res.status(400).json({
+      error: "Слишком короткое имя!"
+    });
+    return;
+  }
+  if (password.length < 4) {
+    res.status(400).json({
+      error: "Слишком короткий пароль!"
+    });
+    return;
+  }
+
   const id = users.length + 1;
   users.push({
     id,
@@ -102,7 +110,6 @@ app.post("/register", (req, res) => {
     about: null
   });
   res.json({
-    success: true,
     message: "Пользователь успешно зарегестрирован"
   });
 });
@@ -112,7 +119,6 @@ app.use((error, req, res, next) => {
   if (error.name === "UnauthorizedError") {
     // если пользователь не авторизован - отправляем ошибку о том что он не авторизован
     res.status(401).json({
-      success: false,
       message: "Пользователь не авторизован"
     });
   } else {

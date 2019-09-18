@@ -3,9 +3,11 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const exjwt = require("express-jwt");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const app = express();
 
+app.use(cors());
 app.use(morgan("dev"));
 
 app.use(bodyParser.json());
@@ -23,14 +25,14 @@ let users = [
     id: 1,
     username: "test",
     password: "123",
-    avatar: `https://picsum.photos/1/200/200`,
+    avatar: `https://picsum.photos/id/1/200/200`,
     about:
       "Я тестовый пользователь номер один. Я никогда не пропадаю между запусками api!"
   },
   {
     id: 2,
     username: "test2",
-    avatar: `https://picsum.photos/2/200/200`,
+    avatar: `https://picsum.photos/id/2/200/200`,
     password: "234",
     about:
       "Я тестовый пользователь номер два. Я так же никогда не пропадаю между запусками api!"

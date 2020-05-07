@@ -1,0 +1,27 @@
+POST http://localhost:8000/create_checks/
+Content-Type: application/json
+
+{
+  "id": 3000,
+  "price": 1000,
+  "address": "Уфа, Ленина 9000",
+  "client": {
+    "name": "Иванов Иван",
+    "phone": "9173430000"
+  },
+  "items": [
+    {
+      "name": "Пицца",
+      "quantity": 1,
+      "unit_price": 500
+    },
+    {
+      "name": "Ролл",
+      "quantity": 1,
+      "unit_price": 500
+    }
+  ],
+  "point_id": 1
+}
+
+###

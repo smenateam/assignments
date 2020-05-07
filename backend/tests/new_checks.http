@@ -1,0 +1,4 @@
+GET http://localhost:8000/new_checks/?api_key=key1
+Accept: application/json
+
+###

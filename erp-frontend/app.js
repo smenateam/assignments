@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // инициализация middleware от express-jwt
 const jwtMW = exjwt({
-  secret: "topsecretkey"
+  secret: "topsecretkey",
+  algorithms: ["HS256"]
 });
 
 // замоканная база данных

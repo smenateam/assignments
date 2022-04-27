@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{#<!--    <title>Чек для клиента</title>-->#}
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            width: 210mm;
+            font-size: 14px;
+            height: 297mm;
+        }
+    </style>
+</head>
+<body>
+{#{% block menu %}#}
+{#    {% include 'mainapp/includes/inc-menu.html' %}#}
+{#{% endblock %}#}
+<div class="container">
+    <div class="info_order">
+        {% for info_order in info_orders %}
+            <div class="row">
+{#                <h2 class="col col-3">№ 123456</h2>#}
+                <h2 class="col col-3">№ {{ info_order.id }}</h2>
+{#                <h3 class="col col-6">г. Уфа, ул. Ленина, д. 42</h3>#}
+{#                {% if check.type == 'C' %}#}
+                    <h3 class="col col-6">{{ info_order.address }}</h3>
+                    <div class="col col-3">
+                        <ul class="list-unstyled">
+    {#                        <li class="font-weight-bold">Иван</li>#}
+                            <li class="font-weight-bold">{{ info_order.client.name }}</li>
+                            <li>{{ info_order.client.phone }}</li>
+                        </ul>
+                    </div>
+{#                {% endif %}#}
+            </div>
+            <div class="row">
+                <table class="table" width="830px">
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Количество</th>
+                        <th>Цена за единицу</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in info_order.items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.unit_price }}</td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                                <td></td>
+                                <td>ИТОГО:</td>
+                                <td>{{ info_order.price }}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="button-box">
+{#                <form method="post" enctype="multipart/form-data"#}
+{#                      action="{% url 'kitchen_checks' info_order.id %}">#}
+{#                {% csrf_token %}#}
+{#                <input hidden="true" name="type" value="C">#}
+{#                    <input hidden="true" name="check_id" value="K">#}
+{#                <button class="popup-button">Отправить на кухню</button>#}
+            </form>
+{#            <button class="popup-button">Нет</button>#}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="jumbotron">
+    <h2>Спасибо за заказ :)</h2>
+</div>
+</body>
+</html>

@@ -1,4 +1,12 @@
+# IDE
 .idea/
+
+# Static
 media/
+
+# Python
 .python-version
+.venv
+
+# Javascript
 frontend/node_modules/

@@ -30,8 +30,7 @@
       1. CPU - `targetAverageUtilization: 80`
       2. Memory - `targetAverageUtilization: 80`
    7. [helmfile](../deploy/helmfile.yaml) для трех (`dev`, `stage`, `prod`) окружений
-   8. [helmfile-minikube](../deploy/helmfile-minikube.yaml) для разворачивания в minikube
-      1. Написать инструкцию по запуску приложения через minikube
+   8. Написать полную пошаговую инструкцию по сборке приложения и запуску через minikube
 
 ## Итог
 Приложение должно:

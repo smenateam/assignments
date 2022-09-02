@@ -26,11 +26,20 @@
       1. dev - localhost
       2. stage - farforstaging.ru
       3. prod - farfor.ru
-   6. [HorizontalPodAutoscaler](../deploy/chart/templates/hpa.yaml), который будет скейлить реплики от 2 до 4, если 
-      1. CPU - `targetAverageUtilization: 80`
-      2. Memory - `targetAverageUtilization: 80`
-   7. [helmfile](../deploy/helmfile.yaml) для трех (`dev`, `stage`, `prod`) окружений
-   8. Написать полную пошаговую инструкцию по сборке приложения и запуску через minikube
+   6. [CertManager](../deploy/chart/templates/certmanager.yaml) в котором
+      1. `Issuer` для выписывания сертификатов acme-letsencrypt через `http01.ingess`
+      2. `Certificate` - соответствующий сертификат связанный с `Issuer` для доменов окружений `stage` и `prod`
+      - P.S. Ествественно не нужно пытаться выписывать сертификаты, только написать манифесты
+   7. [HorizontalPodAutoscaler](../deploy/chart/templates/hpa.yaml), который будет
+      1. Скейлить реплики от 2 до 4
+      2. Триггер для скейла будет использование CPU или ОЗУ в 80%
+   8. [_helpers.tpl](../deploy/chart/templates/_helpers.tpl), в котором определить шаблоны для
+      1. `selectorlabels`, в котором определить селекторные метки `app` и `release`
+      2. `labels` включающий в себя `selectorLabels`, в котором определить общие метки `chart` и `version` + `selectorLabels`
+      и использовать шаблоны в нужных местах в чарте
+   9. [helmfile](../deploy/helmfile.yaml) для трех (`dev`, `stage`, `prod`) окружений
+   10. Максимально использовать общие переменные и переиспользовать переменные окружений по необходимости 
+   11. Написать полную пошаговую инструкцию по сборке приложения и запуску через minikube
 
 ## Итог
 Приложение должно:
